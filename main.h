@@ -3,6 +3,7 @@
 
 #include <unistd.h>
 #include <stdlib.h>
+#include <stdarg.h>
 
 typedef unsigned int u_int;
 
@@ -12,4 +13,19 @@ char *_strcat(char *dest, char *src);
 u_int _strlen(char *str);
 char *_itoa(int num);
 char *_strrev(char *str);
+
+int (*process_arg(char option))(va_list list);
+
+/**
+ * struct w_ops - map function with the character options
+ * @op: the option for that specific function
+ * @func: the function to run
+ * Return: the count of what was outputted
+ */
+typedef struct w_ops
+{
+	char op;
+	int (*func)(va_list list);
+} write_ops;
+
 #endif /* _PRINTF */

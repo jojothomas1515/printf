@@ -9,11 +9,16 @@ typedef unsigned int u_int;
 
 /* Define functions prototypes */
 int _printf(const char *format, ...);
+
+/* string manipulations function */
 char *_strcat(char *dest, char *src);
 u_int _strlen(char *str);
 char *_itoa(int num);
 char *_strrev(char *str);
 
+/* operation functions */
+int write_num(va_list);
+int write_string(va_list);
 int (*process_arg(char option))(va_list list);
 
 /**

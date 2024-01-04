@@ -21,7 +21,11 @@ int _printf(const char *format, ...)
 		{
 			format++;
 			func = process_arg(*format);
-			count += func(list);
+
+			if (func != NULL)
+			{
+				count += func(list);
+			}
 			format++;
 		}
 		else
@@ -44,6 +48,19 @@ int _printf(const char *format, ...)
 int (*process_arg(char option))(va_list list)
 {
 	write_ops operations[] = {
-		{'i', 'i'}
+	    {'i', write_num},
+	    {'d', write_num},
+	    {'s', write_string},
+	};
+	int i = 0;
+
+	for (i; i < 3; i++)
+	{
+		if (operations[i].op == option)
+		{
+			return (operations->func);
+		}
 	}
+
+	return (NULL);
 }

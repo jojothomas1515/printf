@@ -27,3 +27,16 @@ int write_string(va_list list)
 
 	return (write(1, str, len));
 }
+
+/**
+ * write_char - write out character gotten from valist
+ * @list: valist
+ * Return: the number of character written to stdout
+ */
+int write_char(va_list list)
+{
+
+	char c = va_arg(list, int);
+
+	return (write(1, &c, 1));
+}

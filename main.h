@@ -19,7 +19,12 @@ char *_strrev(char *str);
 /* operation functions */
 int write_num(va_list);
 int write_string(va_list);
+int write_char(va_list);
+
 int (*process_arg(char option))(va_list list);
+
+/* utilities function */
+int _putchar(char c);
 
 /**
  * struct w_ops - map function with the character options

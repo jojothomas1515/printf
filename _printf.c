@@ -20,6 +20,13 @@ int _printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
+
+			if (*format == '%')
+			{
+				count += _putchar('%');
+				format++;
+				continue;
+			}
 			func = process_arg(*format);
 
 			if (func != NULL)
@@ -31,7 +38,7 @@ int _printf(const char *format, ...)
 		else
 		{
 
-			count += write(1, format, 1);
+			count += _putchar(*format);
 			format++;
 		}
 	}
@@ -47,18 +54,20 @@ int _printf(const char *format, ...)
  */
 int (*process_arg(char option))(va_list list)
 {
+
 	write_ops operations[] = {
 	    {'i', write_num},
 	    {'d', write_num},
 	    {'s', write_string},
+	    {'c', write_char},
 	};
 	int i = 0;
 
-	for (i; i < 3; i++)
+	for (i; i < 4; i++)
 	{
 		if (operations[i].op == option)
 		{
-			return (operations->func);
+			return (operations[i].func);
 		}
 	}
 

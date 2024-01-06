@@ -11,9 +11,9 @@ int _printf(const char *format, ...)
 {
 	va_list list;
 	int (*func)(va_list);
+	int count = 0;
 
 	va_start(list, format);
-	int count = 0;
 
 	while (*format != '\0')
 	{
@@ -61,9 +61,9 @@ int (*process_arg(char option))(va_list list)
 	    {'s', write_string},
 	    {'c', write_char},
 	};
-	int i = 0;
+	int i;
 
-	for (i; i < 4; i++)
+	for (i = 0; i < 4; i++)
 	{
 		if (operations[i].op == option)
 		{

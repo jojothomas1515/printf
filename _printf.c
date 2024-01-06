@@ -27,6 +27,16 @@ int _printf(const char *format, ...)
 				format++;
 				continue;
 			}
+			if (*format == '\0')
+			{
+				_putchar('\r');
+				return (0);
+			}
+			if (*format == '!')
+			{
+				count += _putchar('%');
+				count += _putchar('!');
+			}
 			func = process_arg(*format);
 
 			if (func != NULL)
@@ -65,6 +75,7 @@ int (*process_arg(char option))(va_list list)
 
 	for (i = 0; i < 4; i++)
 	{
+
 		if (operations[i].op == option)
 		{
 			return (operations[i].func);

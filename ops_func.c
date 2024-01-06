@@ -25,6 +25,11 @@ int write_string(va_list list)
 	char *str = va_arg(list, char *);
 	int len = _strlen(str);
 
+	if (str == NULL)
+	{
+		return (write(1, "(null)", 6));
+	}
+
 	return (write(1, str, len));
 }
 

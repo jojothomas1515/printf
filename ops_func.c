@@ -32,6 +32,25 @@ int write_string(va_list list)
 
 	return (write(1, str, len));
 }
+/**
+ * write_binary - with the string to stdout
+ *
+ * @list: variable list
+ * Return: number of characters printed
+ */
+int write_binary(va_list list)
+{
+	int num = va_arg(list, int);
+	char *str = _itob(num);
+	int len = _strlen(str);
+
+	/* if (str == NULL)
+	{
+		return (write(1, "(null)", 6));
+	} */
+
+	return (write(1, str, len));
+}
 
 /**
  * write_char - write out character gotten from valist

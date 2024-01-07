@@ -70,10 +70,11 @@ int (*process_arg(char option))(va_list list)
 	    {'d', write_num},
 	    {'s', write_string},
 	    {'c', write_char},
+	    {'b', write_binary},
 	};
 	int i;
 
-	for (i = 0; i < 4; i++)
+	for (i = 0; i < 5; i++)
 	{
 
 		if (operations[i].op == option)

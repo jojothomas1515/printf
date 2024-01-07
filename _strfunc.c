@@ -49,15 +49,30 @@ char *_strcat(char *dest, char *src)
 
 /**
  * _itoa - convert int to string
- * @num: the number to convert to string
+ * @nums: the number to convert to string
  * Return: string
  */
-char *_itoa(int num)
+char *_itoa(int nums)
 {
 	char *num_str;
 	int index = 0;
+	int minus_flag = 0;
+	long num = (long)nums;
 
 	num_str = malloc(sizeof(char) * 64);
+
+	if (num == 0)
+	{
+		num_str[0] = '0';
+		num_str[1] = '\0';
+		return (num_str);
+	}
+
+	if (num < 0)
+	{
+		minus_flag = 1;
+		num *= -1;
+	}
 
 	if (num_str == NULL)
 	{
@@ -69,6 +84,11 @@ char *_itoa(int num)
 		num_str[index] = (num % 10) + '0';
 		index++;
 		num /= 10;
+	}
+	if (minus_flag == 1)
+	{
+		num_str[index] = '-';
+		index++;
 	}
 
 	num_str[index] = '\0';
@@ -95,4 +115,53 @@ char *_strrev(char *str)
 	}
 
 	return (str);
+}
+
+/**
+ * _itob - convert int to string
+ * @nums: the number to convert to string
+ * Return: string
+ */
+char *_itob(int nums)
+{
+	char *num_str;
+	int index = 0;
+	int minus_flag = 0;
+	long num = (long)nums;
+
+	num_str = malloc(sizeof(char) * 64);
+
+	if (num == 0)
+	{
+		num_str[0] = '0';
+		num_str[1] = '\0';
+		return (num_str);
+	}
+	/*
+		if (num < 0)
+		{
+			minus_flag = 1;
+			num *= -1;
+		}
+	 */
+	if (num_str == NULL)
+	{
+		return (NULL);
+	}
+
+	while ((num / 2) != 0 && (num % 2) != 0)
+	{
+		num_str[index] = (num % 2) + '0';
+		index++;
+		num /= 2;
+	}
+	/* if (minus_flag == 1)
+	{
+		num_str[index] = '-';
+		index++;
+	}
+ */
+	num_str[index] = '\0';
+
+	return (_strrev(num_str));
 }

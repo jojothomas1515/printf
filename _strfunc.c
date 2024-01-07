@@ -126,7 +126,6 @@ char *_itob(int nums)
 {
 	char *num_str;
 	int index = 0;
-	int minus_flag = 0;
 	long num = (long)nums;
 
 	num_str = malloc(sizeof(char) * 64);
@@ -137,13 +136,7 @@ char *_itob(int nums)
 		num_str[1] = '\0';
 		return (num_str);
 	}
-	/*
-		if (num < 0)
-		{
-			minus_flag = 1;
-			num *= -1;
-		}
-	 */
+
 	if (num_str == NULL)
 	{
 		return (NULL);
@@ -155,12 +148,7 @@ char *_itob(int nums)
 		index++;
 		num /= 2;
 	}
-	/* if (minus_flag == 1)
-	{
-		num_str[index] = '-';
-		index++;
-	}
- */
+
 	num_str[index] = '\0';
 
 	return (_strrev(num_str));

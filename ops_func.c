@@ -44,11 +44,6 @@ int write_binary(va_list list)
 	char *str = _itob(num);
 	int len = _strlen(str);
 
-	/* if (str == NULL)
-	{
-		return (write(1, "(null)", 6));
-	} */
-
 	return (write(1, str, len));
 }
 

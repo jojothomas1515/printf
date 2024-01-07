@@ -10,17 +10,14 @@
 int _printf(const char *format, ...)
 {
 	va_list list;
-	int (*func)(va_list);
-	int count = 0;
+	int (*func)(va_list), count = 0;
 
 	va_start(list, format);
-
 	while (*format != '\0')
 	{
 		if (*format == '%')
 		{
 			format++;
-
 			if (*format == '%')
 			{
 				count += _putchar('%');
@@ -38,7 +35,6 @@ int _printf(const char *format, ...)
 				count += _putchar('!');
 			}
 			func = process_arg(*format);
-
 			if (func != NULL)
 			{
 				count += func(list);
@@ -47,12 +43,10 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-
 			count += _putchar(*format);
 			format++;
 		}
 	}
-
 	va_end(list);
 	return (count);
 }

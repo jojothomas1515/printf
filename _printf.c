@@ -13,36 +13,36 @@ int _printf(const char *format, ...)
 	int (*func)(va_list), count = 0;
 
 	va_start(list, format);
-	while (*format != '\0')
+	if (format != NULL)
 	{
-		if (*format == '%')
+		while (*format != '\0')
 		{
-			format++;
-			if (*format == '%')
+			if (*format == '%' && format++)
 			{
-				count += _putchar('%');
+				if (*format == '%')
+				{
+					count += _putchar('%');
+					format++;
+					continue;
+				}
+				if (*format == '\0')
+				{
+					_putchar('\r');
+					return (0);
+				}
+				if (*format == '!')
+				{
+					count += _putchar('%');
+					count += _putchar('!');
+				}
+				func = process_arg(*format);
+				if (func != NULL)
+				{
+					count += func(list);
+				}
 				format++;
 				continue;
 			}
-			if (*format == '\0')
-			{
-				_putchar('\r');
-				return (0);
-			}
-			if (*format == '!')
-			{
-				count += _putchar('%');
-				count += _putchar('!');
-			}
-			func = process_arg(*format);
-			if (func != NULL)
-			{
-				count += func(list);
-			}
-			format++;
-		}
-		else
-		{
 			count += _putchar(*format);
 			format++;
 		}

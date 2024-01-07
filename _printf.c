@@ -28,7 +28,7 @@ int _printf(const char *format, ...)
 				if (*format == '\0')
 				{
 					_putchar('\r');
-					return (0);
+					return (-1);
 				}
 				if (*format == '!')
 				{

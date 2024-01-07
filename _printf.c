@@ -10,43 +10,15 @@
 int _printf(const char *format, ...)
 {
 	va_list list;
-	int (*func)(va_list), count = 0;
+	int count;
 
-	va_start(list, format);
-	if (format != NULL)
+	if (format == NULL)
 	{
-		while (*format != '\0')
-		{
-			if (*format == '%' && format++)
-			{
-				if (*format == '%')
-				{
-					count += _putchar('%');
-					format++;
-					continue;
-				}
-				if (*format == '\0')
-				{
-					_putchar('\r');
-					return (-1);
-				}
-				if (*format == '!')
-				{
-					count += _putchar('%');
-					count += _putchar('!');
-				}
-				func = process_arg(*format);
-				if (func != NULL)
-				{
-					count += func(list);
-				}
-				format++;
-				continue;
-			}
-			count += _putchar(*format);
-			format++;
-		}
+		return (-1);
 	}
+	va_start(list, format);
+
+	count = process_format(format, list);
 	va_end(list);
 	return (count);
 }
@@ -78,4 +50,50 @@ int (*process_arg(char option))(va_list list)
 	}
 
 	return (NULL);
+}
+
+/**
+ * process_format - get and format all the items in the va_list
+ *
+ * @format: string with the format to be parsed and substituted
+ * @list: va_list with the variable number of argument of diff types
+ * Return: number of character written to the stdout;
+ */
+int process_format(const char *format, va_list list)
+{
+	int (*func)(va_list), count = 0;
+
+	while (*format != '\0')
+	{
+		if (*format == '%' && format++)
+		{
+			if (*format == '%')
+			{
+				count += _putchar('%');
+				format++;
+				continue;
+			}
+			if (*format == '\0')
+			{
+				_putchar('\r');
+				return (-1);
+			}
+			if (*format == '!')
+			{
+				count += _putchar('%');
+				count += _putchar('!');
+			}
+			func = process_arg(*format);
+			if (func != NULL)
+			{
+				count += func(list);
+			}
+			format++;
+			continue;
+		}
+		count += _putchar(*format);
+		format++;
+	}
+
+	return (count);
 }

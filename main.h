@@ -24,6 +24,7 @@ int write_string(va_list);
 int write_char(va_list);
 int write_binary(va_list list);
 int (*process_arg(char option))(va_list list);
+int process_format(const char *format, va_list list);
 
 /* utilities function */
 int _putchar(char c);

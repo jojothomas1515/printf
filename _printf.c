@@ -78,15 +78,15 @@ int process_format(const char *format, va_list list)
 				_putchar('\r');
 				return (-1);
 			}
-			if (*format == '!')
-			{
-				count += _putchar('%');
-				count += _putchar('!');
-			}
 			func = process_arg(*format);
 			if (func != NULL)
 			{
 				count += func(list);
+			}
+			else
+			{
+				format--;
+				count += _putchar(*format);
 			}
 			format++;
 			continue;

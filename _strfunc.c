@@ -60,6 +60,10 @@ char *_itoa(int nums)
 	long num = (long)nums;
 
 	num_str = malloc(sizeof(char) * 64);
+	if (num_str == NULL)
+	{
+		return (NULL);
+	}
 
 	if (num == 0)
 	{
@@ -72,11 +76,6 @@ char *_itoa(int nums)
 	{
 		minus_flag = 1;
 		num *= -1;
-	}
-
-	if (num_str == NULL)
-	{
-		return (NULL);
 	}
 
 	while ((num / 10) != 0 || (num % 10) != 0)

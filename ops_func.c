@@ -46,8 +46,10 @@ int write_binary(va_list list)
 	int num = va_arg(list, int);
 	char *str = _itob(num);
 	int len = _strlen(str);
+	int write_count = write(1, _itob(num), len);
 
-	return (write(1, str, len));
+	free(str);
+	return (write_count);
 }
 
 /**

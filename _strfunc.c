@@ -141,7 +141,7 @@ char *_itob(int nums)
 		return (NULL);
 	}
 
-	while ((num / 2) != 0 && (num % 2) != 0)
+	while ((num / 2) != 0 || (num % 2) != 0)
 	{
 		num_str[index] = (num % 2) + '0';
 		index++;
@@ -149,6 +149,5 @@ char *_itob(int nums)
 	}
 
 	num_str[index] = '\0';
-
 	return (_strrev(num_str));
 }

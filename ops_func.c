@@ -9,9 +9,12 @@
 int write_num(va_list list)
 {
 	int num = va_arg(list, int);
-	int len = _strlen(_itoa(num));
+	char *str = _itoa(num);
+	int len = _strlen(str);
+	int write_count = write(1, _itoa(num), len);
 
-	return (write(1, _itoa(num), len));
+	free(str);
+	return (write_count);
 }
 
 /**
